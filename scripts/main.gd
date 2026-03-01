@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 	_update_ui()
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			is_panning = event.pressed
@@ -259,14 +259,12 @@ func _mouse_to_cell(mouse_pos: Vector2) -> Vector2i:
 	var ray_origin: Vector3 = camera_3d.project_ray_origin(mouse_pos)
 	var ray_dir: Vector3 = camera_3d.project_ray_normal(mouse_pos)
 
-	if absf(ray_dir.y) < 0.0001:
+	var ground_plane: Plane = Plane(Vector3.UP, GROUND_THICKNESS * 0.5)
+	var hit_variant: Variant = ground_plane.intersects_ray(ray_origin, ray_dir)
+	if hit_variant == null:
 		return Vector2i(-1, -1)
 
-	var t: float = -ray_origin.y / ray_dir.y
-	if t < 0.0:
-		return Vector2i(-1, -1)
-
-	var hit: Vector3 = ray_origin + ray_dir * t
+	var hit: Vector3 = hit_variant
 	var min_x: float = -(float(GRID_WIDTH) * CELL_SIZE * 0.5)
 	var min_z: float = -(float(GRID_HEIGHT) * CELL_SIZE * 0.5)
 	var gx: int = int(floor((hit.x - min_x) / CELL_SIZE))

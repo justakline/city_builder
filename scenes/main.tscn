@@ -33,6 +33,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 460.0
 offset_bottom = 260.0
+mouse_filter = 2
 
 [node name="InfoLabel" type="Label" parent="UI/Panel"]
 layout_mode = 2
