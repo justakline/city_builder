@@ -55,6 +55,8 @@ func _ready() -> void:
 	_update_camera_transform()
 	last_stats = simulation.get_snapshot()
 	set_process(true)
+	set_process_input(true)
+	set_process_unhandled_input(true)
 
 
 func _process(delta: float) -> void:
@@ -67,6 +69,14 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	_handle_input(event)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	_handle_input(event)
+
+
+func _handle_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			is_panning = event.pressed
@@ -89,7 +99,10 @@ func _input(event: InputEvent) -> void:
 			_update_camera_transform()
 
 	if event is InputEventKey and event.pressed:
-		match event.keycode:
+		var code: Key = event.keycode
+		if code == KEY_NONE:
+			code = event.physical_keycode
+		match code:
 			KEY_0:
 				active_brush = TileType.EMPTY
 			KEY_1:
