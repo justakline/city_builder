@@ -152,7 +152,9 @@ func _collect_sim_inputs() -> Dictionary:
 					if _has_adjacent_road(Vector2i(x, y)):
 						connected_zones += 1
 
-	var connected_zone_ratio := float(connected_zones) / max(1.0, float(total_zones))
+	var connected_zone_ratio: float = 0.0
+	if total_zones > 0:
+		connected_zone_ratio = float(connected_zones) / float(total_zones)
 
 	return {
 		"road_tiles": road_tiles,
