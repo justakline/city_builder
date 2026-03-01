@@ -249,3 +249,17 @@ Key metrics should be recorded over time for analysis and balancing:
 - [x] Connect repository to GitHub remote
 - [x] Create first commit
 - [x] Push `main` to GitHub
+
+## Prototype Quick Start
+- Install Godot 4.x.
+- Open this folder as a Godot project.
+- Run the main scene (`res://scenes/main.tscn`).
+
+### Prototype Controls
+- `1`: Road brush
+- `2`: Residential zone brush
+- `3`: Commercial zone brush
+- `4`: Industrial zone brush
+- `0`: Erase brush
+- `C`: Clear map
+- Left-click + drag: Paint tiles
