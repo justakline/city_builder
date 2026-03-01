@@ -51,8 +51,10 @@ func _step(inputs: Dictionary) -> void:
 	var connected_ratio: float = float(inputs.get("connected_zone_ratio", 0.0))
 	var map_tiles: int = int(inputs.get("map_tiles", 1))
 
-	var road_density := float(roads) / max(1.0, float(map_tiles))
-	var road_score := clampf(road_density * 18.0, 0.0, 1.0)
+	var road_density: float = 0.0
+	if map_tiles > 0:
+		road_density = float(roads) / float(map_tiles)
+	var road_score: float = clampf(road_density * 18.0, 0.0, 1.0)
 	_attractiveness = clampf(0.2 + connected_ratio * 0.45 + road_score * 0.20, 0.0, 1.0)
 
 	var capacity: int = residential * 14
@@ -68,9 +70,9 @@ func _step(inputs: Dictionary) -> void:
 	_transit_share = clampf(0.25 + connected_ratio * 0.5 - road_density * 0.15, 0.05, 0.95)
 	_car_share = 1.0 - _transit_share
 
-	var income_tax := int(_population * 2.2)
-	var sales_tax := int((_population * 1.4) * (0.8 + float(commercial) * 0.02))
-	var property_tax := int((residential + commercial + industrial) * 7.5)
+	var income_tax: int = int(_population * 2.2)
+	var sales_tax: int = int((_population * 1.4) * (0.8 + float(commercial) * 0.02))
+	var property_tax: int = int((residential + commercial + industrial) * 7.5)
 	_tax_income = income_tax + sales_tax + property_tax
 
 	_service_cost = int(800 + _population * 1.7 + roads * 3.5)
