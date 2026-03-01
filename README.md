@@ -25,6 +25,12 @@ Build a clean, approachable city builder where players design infrastructure fir
 - Example:
   - Small towns cannot unlock skyscrapers until higher population tiers are reached.
 
+### C. Challenge Mode (Race to Population Target)
+- Timed mode focused on reaching a target population as fast as possible.
+- Default target: 100,000 residents (configurable in game setup).
+- Clock starts at city start and stops when target population is sustained for a defined period.
+- Score is based on completion time, with optional penalties for severe instability (for example, budget collapse or extreme service failure).
+
 ## Core Systems
 
 ### 1. Grid and Build Geometry
@@ -185,6 +191,7 @@ Key metrics should be recorded over time for analysis and balancing:
 - Land value, rent levels, housing supply mix, and affordability
 - Service quality indicators (waste collection coverage, utility reliability, crime/safety)
 - Unlock progression status by population tier
+- Challenge mode metrics (elapsed time, split times by milestone, best completion time)
 
 ## Initial Scope (MVP)
 - Tile/plot-based map with square-tile placement.
@@ -195,6 +202,9 @@ Key metrics should be recorded over time for analysis and balancing:
 - Two game modes:
   - Creative mode with all core tools unlocked
   - Regular mode with population-based unlock milestones
+- Challenge mode:
+  - Timed race to a target population (default 100,000)
+  - Tracks completion time and milestone splits
 - Basic simulation tick that:
   - Spawns households
   - Tracks jobs and basic income/expenses
