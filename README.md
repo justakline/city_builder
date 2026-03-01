@@ -263,3 +263,5 @@ Key metrics should be recorded over time for analysis and balancing:
 - `0`: Erase brush
 - `C`: Clear map
 - Left-click + drag: Paint tiles
+- Right-click + drag: Pan camera
+- Mouse wheel: Zoom in/out

@@ -3,11 +3,28 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5dn5a"]
 [ext_resource type="Script" path="res://scripts/sim/simulation.gd" id="2_j08t8"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node3D"]
 script = ExtResource("1_5dn5a")
 
 [node name="Simulation" type="Node" parent="."]
 script = ExtResource("2_j08t8")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, -0.409576, 0.401106, 0, 0.699663, 0.714473, -0.573576, -0.585529, 0.573577, 0, 28, 0)
+light_energy = 1.5
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="GroundRoot" type="Node3D" parent="World"]
+
+[node name="BuildingRoot" type="Node3D" parent="World"]
+
+[node name="HoverCursor" type="MeshInstance3D" parent="World"]
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+near = 0.05
 
 [node name="UI" type="CanvasLayer" parent="."]
 
